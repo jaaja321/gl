@@ -1,0 +1,16 @@
+import React, { Component } from 'react'
+import Item from './Item'
+
+export class Main extends Component {
+  render() {
+    return (
+      <main id='items' className={`${this.props.open ? 'md:ml-[21%]' : 'md:ml-[1%]'} ml-[1%] mt-[10vh] mr-[1%] grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4 gap-4 justify-between duration-300`}>
+        {this.props.items.map(el => (
+            <Item colors={this.props.colors} curitems={this.props.curitems} item = {el} search={this.props.search} addItem={this.props.addItem}/>
+        ))}
+      </main>
+    )
+  }
+}
+
+export default Main

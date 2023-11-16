@@ -1,0 +1,147 @@
+import React, { Component } from 'react'
+import Category from './Category'
+import {HiMenu} from 'react-icons/hi'
+import { MdOutlineSportsSoccer } from 'react-icons/md'
+import { GiOpenBook, GiThunderSkull } from 'react-icons/gi'
+import { PiBabyBold } from 'react-icons/pi'
+import { HiSun } from 'react-icons/hi2'
+import { FaMale, FaFemale } from 'react-icons/fa'
+import {IoColorPaletteOutline} from 'react-icons/io5'
+import {IoMdCheckmark} from 'react-icons/io'
+
+export class Nav extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      open: false,
+      ocol: false,
+      curcat: 'allC',
+      curstate: 'allG',
+      curcol: 'allCol',
+      colors: [
+        {color: 'bg-black',
+        sel: false},
+        {color: 'bg-white',
+        sel: false},
+        {color: 'bg-red-500',
+        sel: false},
+        {color: 'bg-green-500',
+        sel: false},
+        {color: 'bg-blue-500',
+        sel: false},
+        {color: 'bg-purple-500',
+        sel: false},
+    ],
+    }
+    this.stateCheck = this.stateCheck.bind(this)
+    this.catCheck = this.catCheck.bind(this)
+    this.colors = this.colors.bind(this)
+    this.setCol = this.setCol.bind(this)
+  }
+
+  stateCheck(state){
+    console.log(state,this.state.curstate)
+    if (state === this.state.curstate){
+      this.setState({curstate: 'allG'})
+      this.allCheck(this.state.curcat, 'allG', this.state.curcol)
+      return
+    } else {
+      this.setState({curstate: state})
+    }
+    this.allCheck(this.state.curcat, state, this.state.curcol)
+  }
+
+  catCheck(cat){
+    console.log(cat,this.state.curstate)
+    if (cat === this.state.curcat){
+      this.setState({curcat: "allC"})
+      this.allCheck("allC", this.state.curstate, this.state.curcol)
+      return
+    } else {
+      this.setState({curcat: cat})
+    }
+    this.allCheck(cat, this.state.curstate, this.state.curcol)
+  }
+
+  allCheck(cat, state, col){
+    this.setState({curstate: state})
+    this.setState({curcat: cat})
+    this.setState({curcol: col})
+    console.log(cat, state, col)
+    this.props.allCheck(cat, state, col)
+  }
+
+  colors(){
+    return(
+      this.state.colors.map(el => (<div className={`w-[6vh] h-[6vh] ${el.color} border border-black rounded-md`}>
+        <IoMdCheckmark onClick={() => this.setCol(el.color)} className={`${el.color === 'bg-black' ? 'text-white' : 'text-black'} h-full m-auto ${el.color === this.state.curcol ? 'opacity-100' : 'opacity-0'}`} size={30}/></div>))
+    )
+  }
+
+  setCol(col){
+    this.state.colors.forEach(el => {
+      if (el.color === col){
+        el.sel = !el.sel
+        if (!el.sel){
+          this.setState({curcol: 'allCol'})
+          this.allCheck(this.state.curcat, this.state.curstate, 'allCol')
+        } else{
+          this.setState({curcol: el.color})
+          this.allCheck(this.state.curcat, this.state.curstate, col)
+        }
+        console.log(el.sel,col)
+      } else{
+        el.sel = false
+      }}
+      )
+  }
+  
+  render() {
+    return (
+      <nav className={`z-[1000] fixed duration-300 flex flex-col left-0 top-0 ${this.props.open ? 'lg:w-[20%] md:w-[20%] w-[100%]' : 'lg:w-[6%] md:w-[10%] w-[15%] h-[10vh]'} bg-white border-r border-black`} id='header'>
+        <div className='z-[900] flex h-[10vh] border-b justify-around border-black' id='h-nav'>
+          <p className='scale-0 w-0'>help</p>
+            <div onClick={() => this.props.setOpen()} className='mx-2 p-4 my-auto border border-black rounded-lg transition-all sm:hover:bg-gray-800' id='but-hn'><HiMenu className='scale-[2]'/></div>
+            <p className={`my-auto font-bold duration-300 ${this.props.open ? 'scale-1 w-full' : 'scale-0 w-0'}`}>LuxOchki</p>
+        </div>
+        <div className={`duration-300 ${!this.props.open ? 'translate-x-[-300%] h-0 opacity-0' : 'translate-x-[0%] h-screen opacity-100'}`}>
+        <div className='flex justify-around my-1'>
+          <div onClick={() => this.stateCheck('Мужские')} className={`p-4 border border-black rounded-lg ${this.state.curstate === 'Мужские' && 'bg-gray-700'} sm:hover:bg-gray-800 transition-all`}><FaMale className='scale-[2] mx-auto'/></div>
+          <div onClick={() => this.stateCheck('Женские')} className={`p-4 border border-black rounded-lg ${this.state.curstate === 'Женские' && 'bg-gray-700'} sm:hover:bg-gray-800 transition-all`}><FaFemale className='scale-[2] mx-auto'/></div>
+        </div>
+
+        <div className='mx-2 my-1'>
+          <div onClick={() => this.catCheck('Спортивные')} className={`flex border border-black p-1 ${this.state.curcat === 'Спортивные' ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+            <MdOutlineSportsSoccer size={30} />
+            <span className={`font-bold my-auto`}>Спортивные</span>
+          </div>
+        </div>
+        <div className='mx-2 my-1'>
+          <div onClick={() => this.catCheck('Для чтения')} className={`flex border border-black p-1 ${this.state.curcat === 'Для чтения' ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+            <GiOpenBook size={30} />
+            <span className={`font-bold my-auto`}>Для чтения</span>
+          </div>
+        </div>
+        <div className='mx-2 my-1'>
+          <div onClick={() => this.catCheck('Детские')} className={`flex border border-black p-1 ${this.state.curcat === 'Детские' ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+            <PiBabyBold size={30} />
+            <span className={`font-bold my-auto`}>Детские</span>
+          </div>
+        </div>
+
+        <div className={` transition-all duration-300 mx-2 flex gap-2 flex-wrap ${this.state.ocol ? "h-20" : "h-0"} overflow-hidden`}>
+          {this.colors()}
+        </div>
+
+        <div onClick={() => this.setState({ocol: !this.state.ocol})} className={`mx-2 my-1 flex border border-black p-1 ${this.state.ocol ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+          <IoColorPaletteOutline size={30}/>
+          <span className={`font-bold my-auto`}>Выбрать цвет</span>
+        </div>
+
+        </div>
+      </nav>
+    )
+  }
+}
+
+export default Nav

@@ -1,0 +1,55 @@
+@media (max-width: 700px){
+    * {
+      font-size: 100%;
+    }
+    #but {
+      padding: 14px;
+    }
+    #info-img{
+      
+    }
+  }
+@media (max-width: 600px) or (max-height: 600px){
+    * {
+      font-size: 99%;
+    }
+    #but-h,#but-hn{
+      padding: 14px;
+    }
+    #but-h {
+      padding: 8px;
+    }
+    #but {
+      padding: 12px;
+    }
+
+    #input{
+      width: 60%;
+    }
+  }
+@media (max-height: 420px){
+  #but-h{
+    padding: 6px;
+  }
+  #but-hn{
+    padding: 10px;
+  }
+  #header{
+    height: 16vh;
+  }
+  #header-ny{
+    height: 100vh;
+  }
+  #header-nn{
+    height: 16vh;
+  }
+  #h-nav{
+    height: 16vh;
+  }
+  #e{
+    height: 0vh;
+  }
+  #n{
+    height: 90vh;
+  }
+}
