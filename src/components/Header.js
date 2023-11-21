@@ -27,15 +27,9 @@ export default function Header(props) {
 
   const head = () => {
     if (props.curcat === 'allC' && props.curstate === 'allG'){
-      return 'Товары всех категорий'
+      return props.langP == 'ru' ? 'Все категории' : 'Усі категорії'
     }
-    if (props.curcat === 'allC' && props.curstate !== 'allG'){
-      return `Все товары категории "${props.curstate}"`
-    }
-    if (props.curcat !== 'allC' && props.curstate === 'allG'){
-      return `Все товары категории "${props.curcat}"`
-    }
-    return `Все товары категории "${props.curcat} ${props.curstate}"`
+    return `${props.curcat} ${props.curcol} ${props.langP == 'ru' ? 'цвет' : 'колiр'}`
   }
 
   const cartpress = () => {
@@ -55,18 +49,18 @@ export default function Header(props) {
     <div className={`z-10 fixed top-0 ${props.open ? 'lg:w-[80%] md:w-[80%] lg:left-[20%] md:left-[20%] left-[100%]' : 'lg:w-[94%] md:w-[90%] lg:left-[6%] md:left-[10%] left-[15%]'} h-[10vh] bg-white right-0 flex justify-between border-b border-black ${cartshow && 'top-[-10%]'} transition-all`} id='header'>
       <div onClick={() => cartpress()} className={`p-3 ml-4 my-auto font-bold flex border border-black rounded-lg hover:bg-gray-800 transition-all`} id='but-h'>
         <RiShoppingBasket2Fill className='my-auto mr-2 mx-1 scale-[2]'/>
-        <span className={`opacity-0 w-0 lg:opacity-100 lg:w-full`}>Корзина</span>
+        <span className={`opacity-0 w-0 lg:opacity-100 lg:w-full`}>{props.langP == 'ru' ? 'Корзина' : 'Кошик'}</span>
         <p className='font-bold relative'>({props.curitems.length})</p>
       </div>
       <p onClick={() => props.setOpen()} className={`text-center m-auto font-bold sm:opacity-100 sm:w-full opacity-0 w-0`}>{head()}</p>
       <div className='flex items-center'>
       <div className='flex my-auto'>
-        <p onClick={() => props.setLang('ua')} className={`${props.lang.p == 'ua' ? 'opacity-100' : 'opacity-50'}`}>UA</p>
+        <p onClick={() => props.setLang('ua')} className={`${props.langP == 'ua' ? 'opacity-100' : 'opacity-50'}`}>UA</p>
         <p>|</p>
-        <p onClick={() => props.setLang('ru')} className={`${props.lang.p == 'ru' ? 'opacity-100' : 'opacity-50'}`}>RU</p>
+        <p onClick={() => props.setLang('ru')} className={`${props.langP == 'ru' ? 'opacity-100' : 'opacity-50'}`}>RU</p>
       </div>
         <div className='mx-[1%] ml-[2%] my-auto flex'>
-          <input onChange={(e) => type(e.target.value)} value={text} className='rounded-lg w-full border-2 border-gray-300 md:h-[6vh] xl:h-[7vh]' placeholder='Поиск' id='input'></input>
+          <input onChange={(e) => type(e.target.value)} value={text} className='rounded-lg w-full border-2 border-gray-300 md:h-[6vh] xl:h-[7vh]' placeholder={props.langP == 'ru' ? 'Поиск' : 'Пошук'} id='input'></input>
       </div>
       </div>
     </div>

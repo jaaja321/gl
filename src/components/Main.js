@@ -14,7 +14,7 @@ export class Main extends Component {
       return  (
         <main id='items' className={`${this.props.open ? 'sm:ml-[12vh]' : 'sm:ml-[12vh]'} overflow-x-hidden ml-[1%] mt-[10vh] mr-[1%] grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4 gap-4 justify-between duration-300`}>
           {this.props.items.map(el => (
-              <Item langP={this.state.langP} colors={this.props.colors} curitems={this.props.curitems} item = {el} search={this.props.search} addItem={this.props.addItem} lang={this.props.lang}/>
+              <Item langP={this.props.langP} colors={this.props.colors} curitems={this.props.curitems} item = {el} search={this.props.search} addItem={this.props.addItem} lang={this.props.lang}/>
           ))}
         </main>
       )

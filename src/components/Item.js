@@ -46,12 +46,20 @@ export default function Item(props) {
       console.log(props.item)
     }
 
+    const title = () => {
+      if (props.langP == 'ru'){
+        return props.item.title
+      } else {
+        return props.item.titleUa
+      }
+    }
+
   return (
     <div className='justify-between flex flex-col pb-2 mt-2 border-2 border-gray rounded-t-[10px] hover:border-black transition-all'>
         <div>
           <p></p>
           <img onClick={() => info()} className='w-full h-40 rounded-t-[10px]' src={props.item.img}></img>
-          <p onClick={() => info()} className='mx-2'>{props.item.titleUa}</p>
+          <p onClick={() => info()} className='mx-2'>{title()}</p>
         </div>
         <div className='mt-2 px-2 w-full inline-flex justify-between'>
         <div onClick={() => info()} className='p-4 border border-black rounded-lg hover:bg-gray-800 transition-all' id='but'><AiOutlineInfo className='scale-150'/></div>

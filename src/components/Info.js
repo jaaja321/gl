@@ -29,6 +29,15 @@ export default function Info(props) {
     console.log(props.item)
   }
 
+  const title = () => {
+    console.log(props.langP)
+    if (props.langP == 'ru'){
+      return props.item.title
+    } else {
+      return props.item.titleUa
+    }
+  }
+
   const sex = () => {
     if (props.item.sex){
       return props.item.sex
@@ -43,7 +52,7 @@ export default function Info(props) {
         <img className='w-[60%] h-[80vh]' src={props.item.img} id='info-img'></img>
         <div className='flex flex-col justify-center w-[100%]'>
           <ul className='h-[100%] mx-[10%] mr-[10vh]'>
-            <li className='font-bold text-[98%] border-b border-black text-center'>{props.item.title}</li>
+            <li className='font-bold text-[98%] border-b border-black text-center'>{title()}</li>
             <li><span className='text-red-800'>{props.lang.cat}:</span> {props.item.cat}</li>
             <li><span className='text-red-800'>{props.lang.sex}:</span> {sex()}</li>
             <li><span className='text-red-800'>{props.lang.col}:</span> {props.item.col}</li>
