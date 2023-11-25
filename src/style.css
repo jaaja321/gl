@@ -5,10 +5,28 @@
     #but {
       padding: 14px;
     }
-    #info-img{
-      
-    }
   }
+@media (max-width: 1000px){
+  #info-img{
+    height: 40%;
+    width: 40%;
+    margin: auto;
+  }
+  #info-b{
+    display: flex;
+    flex-direction: column;
+  }
+  }
+@media (min-width: 1000px){
+  #info-img{
+    height: 50%;
+    width: 50%;
+    margin: auto;
+  }
+  #info-b{
+    display: flex;
+  }
+}
 @media (max-width: 600px) or (max-height: 600px){
     * {
       font-size: 99%;
@@ -21,10 +39,6 @@
     }
     #but {
       padding: 12px;
-    }
-
-    #input{
-      width: 60%;
     }
   }
 @media (max-height: 420px){

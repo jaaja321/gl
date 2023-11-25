@@ -70,6 +70,9 @@ export class Nav extends Component {
   fil(i,n){
     let arr = this.props.fil
     arr[n] = i
+    if (i == 'del'){
+      arr = []
+    }
     console.log(arr)
     this.setState({fil: arr})
     this.props.allCheck(arr)
@@ -105,6 +108,10 @@ export class Nav extends Component {
           <IoMdClose size={30} className=''/>
           <span className={`font-bold my-auto`}>Назад</span>
         </div>
+        <div onClick={() => this.fil('',2)} className={`justify-center duration-100 mx-2 my-1 flex border border-black p-1 ${!this.state.fil[2] ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+          <IoColorPaletteOutline size={30} className=''/>
+          <span className={`font-bold my-auto`}>Все цвета</span>
+        </div>
         {this.props.colors.map((el) => (
                   <div className='mx-2 my-1'>
                   <div onClick={() => this.fil(el,2)} className={`flex border justify-center duration-100 border-black p-1 ${this.state.fil[2] === el ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
@@ -116,11 +123,15 @@ export class Nav extends Component {
       </div>
       <div onClick={() => this.setState({ocat: !this.state.ocat})} className={`mx-2 my-1 flex border border-black p-1 ${this.state.ocat ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
           <IoColorPaletteOutline size={30}/>
-          <span className={`font-bold my-auto`}>Категории</span>
+          <span className={`font-bold my-auto`}>{this.props.langP == 'ru' ? 'Категории' : 'Категорії'}</span>
         </div>
       <div onClick={() => this.setState({ocol: !this.state.ocol})} className={`mx-2 my-1 flex border border-black p-1 ${this.state.ocol ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
           <IoColorPaletteOutline size={30}/>
-          <span className={`font-bold my-auto`}>Выбрать цвет</span>
+          <span className={`font-bold my-auto`}>{this.props.langP == 'ru' ? 'Цвет' : 'Колір'}</span>
+        </div>
+        <div onClick={() => this.fil('del')} className={`mx-2 my-1 flex border border-black p-1 ${this.state.ocol ? "bg-gray-700" : ""} sm:hover:bg-gray-700`}>
+          <IoColorPaletteOutline size={30}/>
+          <span className={`font-bold my-auto`}>{this.props.langP == 'ru' ? 'Удалить фильтры' : 'Видалити фільтри'}</span>
         </div>
 
 

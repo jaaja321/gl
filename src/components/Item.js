@@ -58,7 +58,7 @@ export default function Item(props) {
     <div className='justify-between flex flex-col pb-2 mt-2 border-2 border-gray rounded-t-[10px] hover:border-black transition-all'>
         <div>
           <p></p>
-          <img onClick={() => info()} className='w-full h-40 rounded-t-[10px]' src={props.item.img}></img>
+          <img onClick={() => info()} className='h-60 mx-auto rounded-t-[10px]' src={props.item.img[0]}></img>
           <p onClick={() => info()} className='mx-2'>{title()}</p>
         </div>
         <div className='mt-2 px-2 w-full inline-flex justify-between'>
@@ -68,7 +68,7 @@ export default function Item(props) {
               <div onClick={() => addItem()} className={`flex p-4 border border-black rounded-lg hover:bg-gray-800 transition-all ${props.item.selected && 'bg-gray-700'}`} id='but'>{props.item.selected ? sel : unsel}</div>
             </div>
         </div>
-        {show ? <Info langP={props.langP} text={text} colors={props.colors} item={props.item} show={show} info={info} addItem={props.addItem} curitems={props.curitems} lang={props.lang}/> : null}
+        {show ? <Info ci={false} langP={props.langP} text={text} colors={props.colors} item={props.item} show={show} info={info} addItem={props.addItem} curitems={props.curitems} lang={props.lang}/> : null}
     </div>
   )
 }
